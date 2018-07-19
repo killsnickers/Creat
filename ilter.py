@@ -1,13 +1,19 @@
 # -*- encoding: utf-8 -*-
-# 随便定义一个list
-listArray=[1,2,3]
-# 使用iter()函数
-iterName=iter(listArray)
-print(iterName)
-# 结果如下：是一个列表list的迭代器
-# <list_iterator object at 0x0000017B0D984278>
+from collections import deque
 
-print(next(iterName))
-print(next(iterName))
-print(next(iterName))
-print(next(iterName))#没有迭代到下一个元素，直接抛出异常
+
+def search(lines, pattern, history=5):
+    previous_lines = deque(maxlen=history)
+    for line in lines:
+        if pattern in line:
+            yield line, previous_lines
+        previous_lines.append(line)
+
+# Example use on a file
+if __name__ == '__main__':
+    with open(r'test.txt') as f:
+        for line, prevlines in search(f, 'python', 5):
+            for pline in prevlines:
+                print(pline)
+            print(line)
+            print('-' * 20)
