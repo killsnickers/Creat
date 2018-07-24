@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding: utf-8 -*-
 
 import urllib
 import sys
@@ -57,7 +57,7 @@ class GetWebContent():
 
 
 if __name__ == '__main__':
-    reload(sys)
+    '''reload(sys)
     sys.setdefaultencoding("utf-8")
     fo = open("foo.txt", "w")
     se = GetWebContent('http://www.qichezhan.net/city/')
@@ -80,4 +80,19 @@ if __name__ == '__main__':
         fo.write('\n')
 
     # 关闭打开的文件
-    fo.close()
+    fo.close()'''
+    url = 'https://www.atobo.com.cn/GongShang/s-p1-s870-q3092-y52/'
+    page = urllib.urlopen(url)  # 打开网页
+    htmlcode = page.read()  # 读取页面源码
+    #print htmlcod
+    soup = BeautifulSoup(htmlcode, "lxml")
+    a = soup.find('div',class_='product_context')
+    a = a.find_all('li',class_='product_box')
+    for ss in a:
+        a1 = ss.find('li',class_='pp_name')
+        a1 = a1.a
+        print a1.get_text()
+        a2 = ss.find('li',class_='c_name')
+        print a2.get_text()
+
+    #print soup.
