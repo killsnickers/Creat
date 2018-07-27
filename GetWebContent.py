@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     # 关闭打开的文件
     fo.close()'''
-    url = 'https://www.atobo.com.cn/GongShang/s-p1-s870-q3092-y52/'
+    url = 'https://www.atobo.com.cn/Companys/s-p6-s81-q117-y50/'
     page = urllib.urlopen(url)  # 打开网页
     htmlcode = page.read()  # 读取页面源码
     #print htmlcod
